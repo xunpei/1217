@@ -1,0 +1,31 @@
+@import "common.scss";
+.box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .nav {
+        width: 100%;
+        height: pxTorem(50px);
+        display: flex;
+        border-bottom: pxTorem(1px) solid #000;
+        overflow-x: auto;
+        li {
+            width: pxTorem(60px);
+            flex-shrink: 0;
+            font-size: pxTorem(20px);
+            text-align: center;
+            line-height: pxTorem(50px);
+            border-right: pxTorem(1px) solid #000;
+        }
+        li.active {
+            background: #764532;
+            color: #fff;
+        }
+    }
+    .wrap {
+        width: 100%;
+        flex: 1;
+        overflow-y: auto;
+    }
+}

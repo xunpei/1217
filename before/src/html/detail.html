@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/detail.css">
+</head>
+
+<body>
+    <div class="box">
+        <ul class="nav">
+            <li>今天</li>
+            <li>明天</li>
+            <li>后天</li>
+            <li>今天</li>
+            <li>明天</li>
+            <li>后天</li>
+            <li>今天</li>
+            <li>明天</li>
+            <li>后天</li>
+        </ul>
+        <div class="wrap">
+            <p>车票1</p>
+        </div>
+    </div>
+    <script src="../js/common/jquery-1.11.1.min.js"></script>
+    <script>
+        $.ajax({
+            url: "/api/get/train_tickets",
+            data: {
+                data: 1
+            },
+            success: function(res) {
+                if (res.code === 1) {
+                    rader(res.data)
+                }
+            }
+        })
+
+        function rader(data) {
+            var html = '';
+
+            data.forEach(function(file) {
+                // console.log(file)
+                html += `<p>${file}</p>`;
+            })
+            $(".wrap").html(html);
+        }
+        $(".nav").on("click", "li", function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            var index = $(this).index() + 1;
+            $.ajax({
+                url: "/api/get/train_tickets",
+                data: {
+                    data: index
+                },
+                success: function(res) {
+                    if (res.code === 1) {
+                        rader(res.data)
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
